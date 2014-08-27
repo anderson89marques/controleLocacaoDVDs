@@ -41,9 +41,18 @@ class Locadora:
     def locar_dvds(self, cliente, dvds, locadora, preco, data_locacao, data_devolucao):
         return
 
+    def buscar_cliente_codigo(self, codigo):
+        arquivo = Arquivo()
+        f = arquivo.open_arquivo("clientedb.txt","r")
+        pass
+
+    #como se fosse código de barra
+    def buscar_dvds_codigo(self, codigo):
+        pass
+
     def save_clientes(self):
         arquivo = Arquivo()
-        f = arquivo.open_arquivo("clientedb.txt")
+        f = arquivo.open_arquivo("clientedb.txt","a")
         l = arquivo.adicionar_codigo("clientedb.txt")
 
         for cliente in self.clientes:
@@ -55,7 +64,7 @@ class Locadora:
 
     def save_dvds(self):
         arquivo = Arquivo()
-        f = arquivo.open_arquivo("dvddb.txt")
+        f = arquivo.open_arquivo("dvddb.txt","a")
         l = arquivo.adicionar_codigo("dvddb.txt")
 
         for dvd in self.dvds:

@@ -1,8 +1,8 @@
 __author__ = 'anderson'
 
 class Arquivo:
-    def open_arquivo(self,nome):
-        f = open(nome,"a")
+    def open_arquivo(self,nome,modo):
+        f = open(nome,modo)
         return f
 
     def fecha_arquivo(self, f):
@@ -35,8 +35,5 @@ class Arquivo:
     def append_dvd(self, f, dvd):
         f.write("%s %s %s\n" %(dvd.codigo, dvd.nome, dvd.genero))
 
-    def append_locadora(self):
-        return
-
-    def append_locacao(self):
-        return
+    def buscar_cliente_codigo(self,codigo):
+        pass

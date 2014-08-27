@@ -1,5 +1,4 @@
 __author__ = 'anderson'
-
 from classes import *
 from arquivos import *
 
@@ -46,6 +45,8 @@ def cadastro_cliente():
 
 def fazer_locacao():
     global locadora
+
+
     return
 
 def cadastrar_dvds():
