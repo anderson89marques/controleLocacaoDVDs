@@ -42,7 +42,7 @@ class Arquivo:
         endereco = ""
         dados = []
         for linha in f.readlines():
-            colunas = linha.split(" ")
+            colunas = linha.strip().split(" ")
             print("col:" + colunas[0])
             print(colunas[0] == codigo)
             print(codigo)
@@ -57,4 +57,21 @@ class Arquivo:
         return dados
 
     def buscar_dvd_por_codigo(self, f, codigo):
-        pass
+        lista_nome = []
+        nome_filme = ""
+        nome_filme
+        dados = []
+        for linha in f.readlines():
+            colunas = linha.strip().split(" ")
+            print(colunas)
+            if colunas[0] == codigo:
+                print("aqui")
+                for x in range(1, len(colunas)-1):
+                    lista_nome.append(colunas[x])
+                nome_filme = " ".join(lista_nome)
+                dados.append(nome_filme)
+                dados.append(colunas[len(colunas)-1])
+                dados.append(colunas[0])
+                print(dados)
+                break
+        return dados
