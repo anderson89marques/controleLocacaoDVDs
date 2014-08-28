@@ -23,8 +23,12 @@ class Arquivo:
         f = open("locacaodb.txt", "w")
         f.close()
 
-    def cria_aquivo_dvd(self):
+    def cria_arquivo_dvd(self):
         f = open("dvddb.txt", "w")
+        f.close()
+
+    def cria_locacao_dvd(self):
+        f = open("locacao_dvddb.txt", "w")
         f.close()
 
     def adicionar_codigo(self, nome):
@@ -75,3 +79,10 @@ class Arquivo:
                 print(dados)
                 break
         return dados
+
+    def locacao(self, f,codigo, cliente, dvds):
+        f.write("%s %s %d %d %s %s %s\n" % (codigo, cliente.codigo, len(dvds), len(dvds) * 3, "em locação", "datalocação", "datadevolução"))
+        lo = self.open_arquivo("locacao_dvddb.txt","w")
+        for x in range(len(dvds)):
+            lo.write("%s %s" % (codigo, dvds[x].codigo))
+        self.fecha_arquivo(lo)

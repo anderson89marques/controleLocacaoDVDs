@@ -10,8 +10,9 @@ def criar_arquivos_db():
 
     arquivo.cria_arquivo_locadora()
     arquivo.cria_arquivo_cliente()
-    arquivo.cria_aquivo_dvd()
+    arquivo.cria_arquivo_dvd()
     arquivo.cria_arquivo_locacao()
+    arquivo.cria_locacao_dvd()
 
 def cadastro_locadora():
     f = open("locadoradb.txt","r")
@@ -50,6 +51,8 @@ def fazer_locacao():
     dvds = buscar_dvds(locadora)
     print(cliente)
     print(dvds)
+    locacao = Locacao(cliente, dvds)
+    locacao.locacao()
 
 def buscar_dvds(locadora):
     sair = False
