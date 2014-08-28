@@ -43,12 +43,17 @@ class Locadora:
 
     def buscar_cliente_codigo(self, codigo):
         arquivo = Arquivo()
-        f = arquivo.open_arquivo("clientedb.txt","r")
-        pass
+        f = arquivo.open_arquivo("clientedb.txt", "r+")
+        dados = arquivo.buscar_cliente_codigo(f, codigo)
+        cliente = Cliente(dados[1], dados[2], dados[3], int(dados[0]))
+        return cliente
 
     #como se fosse código de barra
     def buscar_dvds_codigo(self, codigo):
-        pass
+        arquivo = Arquivo()
+        f = arquivo.open_arquivo("locadoradb.txt", "r+")
+        dvd = arquivo.buscar_dvd_por_codigo(f,codigo)
+        return dvd
 
     def save_clientes(self):
         arquivo = Arquivo()

@@ -45,9 +45,22 @@ def cadastro_cliente():
 
 def fazer_locacao():
     global locadora
+    codigo = input("Digite o código do cliente:")
+    cliente = locadora.buscar_cliente_codigo(codigo)
+    dvds = buscar_dvds(locadora)
+    print(cliente)
+    print(dvds)
 
-
-    return
+def buscar_dvds(locadora):
+    sair = False
+    dvds = []
+    while not sair:
+        codigo = input("Digite o código do dvd:")
+        dvds.append(locadora.buscar_dvds_codigo(codigo))
+        msg = input("continuar?(s/n):").lower()
+        if msg == "n":
+            sair = True
+    return dvds
 
 def cadastrar_dvds():
     global locadora
