@@ -10,8 +10,9 @@ def criar_arquivos_db():
 
     arquivo.cria_arquivo_locadora()
     arquivo.cria_arquivo_cliente()
-    arquivo.cria_aquivo_dvd()
+    arquivo.cria_arquivo_dvd()
     arquivo.cria_arquivo_locacao()
+    arquivo.cria_locacao_dvd()
 
 def cadastro_locadora():
     f = open("locadoradb.txt","r")
@@ -45,9 +46,24 @@ def cadastro_cliente():
 
 def fazer_locacao():
     global locadora
+    codigo = input("Digite o código do cliente:")
+    cliente = locadora.buscar_cliente_codigo(codigo)
+    dvds = buscar_dvds(locadora)
+    print(cliente)
+    print(dvds)
+    locacao = Locacao(cliente, dvds)
+    locacao.locacao()
 
-
-    return
+def buscar_dvds(locadora):
+    sair = False
+    dvds = []
+    while not sair:
+        codigo = input("Digite o código do dvd:")
+        dvds.append(locadora.buscar_dvds_codigo(codigo))
+        msg = input("continuar?(s/n):").lower()
+        if msg == "n":
+            sair = True
+    return dvds
 
 def cadastrar_dvds():
     global locadora

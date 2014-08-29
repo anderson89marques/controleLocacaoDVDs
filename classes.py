@@ -43,12 +43,21 @@ class Locadora:
 
     def buscar_cliente_codigo(self, codigo):
         arquivo = Arquivo()
-        f = arquivo.open_arquivo("clientedb.txt","r")
-        pass
+        f = arquivo.open_arquivo("clientedb.txt", "r+")
+        dados = arquivo.buscar_cliente_codigo(f, codigo)
+        cliente = Cliente(dados[1], dados[2], dados[3], int(dados[0]))
+        arquivo.fecha_arquivo(f)
+        return cliente
 
     #como se fosse código de barra
     def buscar_dvds_codigo(self, codigo):
-        pass
+        arquivo = Arquivo()
+        f = arquivo.open_arquivo("dvddb.txt", "r+")
+        dados = arquivo.buscar_dvd_por_codigo(f,codigo)
+        dvd = DVD(dados[0], dados[1], int(dados[2]))
+        print(dvd)
+        arquivo.fecha_arquivo(f)
+        return dvd
 
     def save_clientes(self):
         arquivo = Arquivo()
@@ -78,20 +87,26 @@ class Locadora:
         return self.nome + " " + self.telefone
 
 class Locacao:
-    def __init__(self, cliente, dvds, locadora, preco, data_locacao, data_devolucao,codigo = 0):
-        self.codigo = codigo
+    preco_locacao_por_dvd = 3 #R$ 3,00
+    def __init__(self, cliente, dvds):
+        self.codigo = self.buscar_codigo()
         self.cliente = cliente
         self.dvds = dvds
-        self.locadora = locadora
-        self.preco = preco
-        self.data_locacao = data_locacao
-        self.data_devolucao = data_devolucao
+        self.data_locacao = None
+        self.data_devolucao = None
+        self.status = None
 
-    def save(self):
+    def locacao(self):
+        arquivo = Arquivo()
+        f = arquivo.open_arquivo("locacaodb.txt", "w")
+        arquivo.locacao(f,self.codigo, self.cliente, self.dvds)
+        arquivo.fecha_arquivo(f)
         return
 
-    def add_codigo(self, codigo):
-        self.codigo = codigo
+    def buscar_codigo(self):
+        arquivo = Arquivo()
+        codigo = arquivo.adicionar_codigo("locacaodb.txt")
+        return codigo
 
     def __repr__(self):
         return self.cliente + " " + self.preco
