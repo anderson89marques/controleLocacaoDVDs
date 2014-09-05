@@ -27,6 +27,9 @@ class Cliente(Base):
     locadora_id = Column(Integer, ForeignKey('locadora.id'))
     locadora = relationship(Locadora, backref=backref('clientes', uselist=True))
 
+    def __repr__(self):
+        return "[cliente: nome:{0} endereço:{1}]".format(self.nome, self.endereco)
+
 class Locacao(Base):
     __tablename__ = 'locacao'
     id = Column(Integer, primary_key=True)
@@ -37,6 +40,9 @@ class Locacao(Base):
     cliente_id = Column(Integer, ForeignKey('cliente.id'))
     cliente = relationship(Cliente, backref=backref('locacoes', uselist=True))
 
+    def __repr__(self):
+       return "[locação: status:{0} {1}]".format(self.status, self.cliente)
+
 class Dvd(Base):
     __tablename__ = 'dvd'
     id = Column(Integer, primary_key=True)
@@ -46,8 +52,10 @@ class Dvd(Base):
     locadora_id = Column(Integer, ForeignKey('locadora.id'))
     locadora = relationship(Locadora, backref=backref('dvds', uselist=True))
     locacao_id = Column(Integer, ForeignKey('locacao.id'))
-    locacao = relationship(Locacao, backref=backref('dvds',uselist=True))
+    locacao = relationship(Locacao, backref=backref('dvds', uselist=True))
 
+    def __repr__(self):
+        return "[DVD: nome:{0} genero:{1}]".format(self.nome, self.genero)
 
 engine = None
 session = None
