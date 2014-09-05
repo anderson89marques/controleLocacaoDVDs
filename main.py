@@ -1,5 +1,5 @@
 __author__ = 'anderson'
-from classes import *
+from banco_arquivos.classes import *
 from arquivos import *
 
 sair = False
