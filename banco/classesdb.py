@@ -61,10 +61,10 @@ class Dvd(Base):
     def __repr__(self):
         return "[DVD: nome:{0} genero:{1}]".format(self.nome, self.genero)
 
-class manager_db():
+class Manager_db():
     def __init__(self):
-        engine = None
-        session = None
+        self.engine = None
+        self.session = None
 
     def connectar(self):
         self.engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost/pythonestudo')
@@ -75,13 +75,13 @@ class manager_db():
         self.session = DBSession()
 
     def criarTabelas(self):
-        Base.metadata.create_all(engine)
+        Base.metadata.create_all(self.engine)
 
-    def fecharsessao(self, s):
-        s.close()
+    def fecharsessao(self):
+        self.session.close()
 
     def executar_operacoes(self):
         self.connectar()
-        s = criarsessao()
-        criarTabelas()
-        fecharsessao(s)
+        self.criarsessao()
+        self.criarTabelas()
+        self.fecharsessao()

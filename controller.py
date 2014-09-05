@@ -7,23 +7,25 @@ class Controller():
         self.sair = False
         self.cliente = None
         self.locadora = self.buscar_locadora()
+        self.managerdb = Manager_db()
+        self.managerdb.connectar()
 
     def gerar_banco(self):
-        executar_operacoes()
+        self.executar_operacoes()
         if self.locadora == None:
             self.locadora = self.buscar_locadora()
 
     def cadastro_locadora(self):
-        connectar()
-        sessao = criarsessao()
+        self.managerdb.criarsessao()
+        sessao = self.managerdb.session
         self.locadora = Locadora(nome="Minha Locadora", telefone="(91)98765432")
         sessao.add(self.locadora)
         sessao.commit()
-        fecharsessao(sessao)
+        self.managerdb.fecharsessao()
 
     def buscar_locadora(self):
-        connectar()
-        s = criarsessao()
+        self.managerdb.criarsessao()
+        s = self.managerdb.session
         try:
             l = s.query(Locadora).all()
         except:
@@ -35,8 +37,8 @@ class Controller():
     def cadastro_cliente(self):
         dici = [ "Nome", "Telefone", "Endereco"]
         sair = False
-        connectar()
-        s = criarsessao()
+        self.managerdb.criarsessao()
+        s = self.managerdb.session
         print("\n\n******** %s ********\n" %"Cadastrado de Clientes")
         while not sair:
             r = self.processa(dici)
@@ -57,8 +59,8 @@ class Controller():
         dici = [ "Nome", "Genero"]
         sair = False
         r = []
-        connectar()
-        s = criarsessao()
+        self.managerdb.criarsessao()
+        s = self.managerdb.session
         print("\n\n******** %s ********\n" %"Cadastrado de DVDs")
         while not sair:
             r = self.processa(dici)
