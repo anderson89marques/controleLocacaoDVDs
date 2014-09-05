@@ -61,28 +61,27 @@ class Dvd(Base):
     def __repr__(self):
         return "[DVD: nome:{0} genero:{1}]".format(self.nome, self.genero)
 
-engine = None
-session = None
+class manager_db():
+    def __init__(self):
+        engine = None
+        session = None
 
-def connectar():
-    global engine #só específicando que vou usar a vriável global
-    engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost/pythonestudo')
+    def connectar(self):
+        self.engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost/pythonestudo')
 
-def criarsessao():
-    global session, engine, Base
-    DBSession = sessionmaker()
-    DBSession.configure(bind=engine)
-    session = DBSession()
-    return session
+    def criarsessao(self):
+        DBSession = sessionmaker()
+        DBSession.configure(bind=self.engine)
+        self.session = DBSession()
 
-def criarTabelas():
-    Base.metadata.create_all(engine)
+    def criarTabelas(self):
+        Base.metadata.create_all(engine)
 
-def fecharsessao(s):
-    s.close()
+    def fecharsessao(self, s):
+        s.close()
 
-def executar_operacoes():
-    connectar()
-    s = criarsessao()
-    criarTabelas()
-    fecharsessao(s)
+    def executar_operacoes(self):
+        self.connectar()
+        s = criarsessao()
+        criarTabelas()
+        fecharsessao(s)

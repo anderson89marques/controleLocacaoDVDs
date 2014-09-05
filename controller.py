@@ -25,7 +25,7 @@ class Controller():
         connectar()
         s = criarsessao()
         try:
-            l = s.query(Locadora).one()
+            l = s.query(Locadora).all()
         except:
             l = None
         print("Locadora rapaz:" + l) if l else print("Aqui rapaz")
