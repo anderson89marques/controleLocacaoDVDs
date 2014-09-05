@@ -23,7 +23,7 @@ class Cliente(Base):
     nome = Column(String, nullable=False)
     telefone = Column(String, nullable=False)
     endereco = Column(String, nullable=False)
-    codigo = Column(Integer, nullable=False)
+    codigo = Column(Integer, nullable=True)
     locadora_id = Column(Integer, ForeignKey('locadora.id'))
     locadora = relationship(Locadora, backref=backref('clientes', uselist=True))
 
