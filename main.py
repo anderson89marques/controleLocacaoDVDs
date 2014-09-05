@@ -23,7 +23,7 @@ def cadastro_locadora():
     locadora = Locadora(a,b)
     return locadora
 
-locadora = cadastro_locadora()
+#locadora = cadastro_locadora()
 
 def cadastro_cliente():
     global locadora

@@ -5,8 +5,8 @@ from controller import Controller
 #////////  Loop principal ///////////////
 sair = False
 control = Controller()
-#control.gerar_banco() já foi criado \o/
-#control.cadastro_locadora()
+control.gerar_banco()
+control.cadastro_locadora()
 while not sair:
     control.menu()
     r = int(input("Digite a opcao: "))

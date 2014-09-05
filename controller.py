@@ -1,5 +1,3 @@
-from main import buscar_dvds
-
 __author__ = 'andersonmarques'
 from banco.classesdb import *
 
@@ -12,6 +10,8 @@ class Controller():
 
     def gerar_banco(self):
         executar_operacoes()
+        if self.locadora == None:
+            self.locadora = self.buscar_locadora()
 
     def cadastro_locadora(self):
         connectar()
@@ -24,7 +24,13 @@ class Controller():
     def buscar_locadora(self):
         connectar()
         s = criarsessao()
-        return s.query(Locadora).one()
+        try:
+            l = s.query(Locadora).one()
+        except:
+            l = None
+        print("Locadora rapaz:" + l) if l else print("Aqui rapaz")
+        s.close()
+        return l
 
     def cadastro_cliente(self):
         dici = [ "Nome", "Telefone", "Endereco"]
@@ -36,36 +42,41 @@ class Controller():
             r = self.processa(dici)
             sair = r[1]
             if(len(r[0]) == 3):
-                cliente = Cliente(r[0][0], r[0][1], r[0][2])
+                cliente = Cliente(nome=r[0][0], telefone=r[0][1], endereco=r[0][2])
+                cliente.locadora(locadora=self.locadora)
                 s.add(cliente)
-                self.locadora.clientes(cliente)
-
-                print(locadora.clientes)
-                locadora.save_clientes()
-
+                print(self.locadora.clientes)
                 x = input("continuar cadastro? (S/N)")
                 if x.lower() == 'n':
                     sair = True
+                    s.add(self.locadora)
+                    s.commit()
+        s.close()
 
     def cadastro_dvds(self):
         dici = [ "Nome", "Genero"]
         sair = False
         r = []
+        connectar()
+        s = criarsessao()
         print("\n\n******** %s ********\n" %"Cadastrado de DVDs")
         while not sair:
             r = self.processa(dici)
             sair = r[1]
             if len(r[0]) == 2:
-                dvd = DVD(r[0][0], r[0][1])
-                locadora.addDVDs([dvd])
-                print(locadora.dvds)
-                locadora.save_dvds()
+                dvd = Dvd(nome=r[0][0], genero=r[0][1])
+                dvd.locadora(locadora=self.locadora)
+                s.add(dvd)
+                print(self.locadora.dvds)
 
                 x = input("\ncontinuar cadastro? (S/N)")
                 if x.lower() == 'n':
                     sair = True
+                    s.add(self.locadora)
+                    s.commit()
+        s.close()
 
-    def processa(dici):
+    def processa(self, dici):
         sair = False
         r = []
         resp = []
