@@ -6,7 +6,7 @@ from controller import Controller
 sair = False
 control = Controller()
 control.gerar_banco()
-'''control.cadastro_locadora()
+control.cadastro_locadora()
 while not sair:
     control.menu()
     r = int(input("Digite a opcao: "))
@@ -14,5 +14,4 @@ while not sair:
         control.switch(r)
     else:
         sair = True
-'''
 print("Saindo\n bye")

@@ -61,7 +61,7 @@ class Dvd(Base):
     def __repr__(self):
         return "[DVD: nome:{0} genero:{1}]".format(self.nome, self.genero)
 
-class Manager_db():
+class Managerdb():
     def __init__(self):
         self.engine = None
         self.session = None

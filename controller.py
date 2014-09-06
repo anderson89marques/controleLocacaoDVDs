@@ -6,31 +6,37 @@ class Controller():
         self.dic = {1: self.cadastro_cliente, 2: self.fazer_locacao, 3: self.cadastro_dvds}
         self.sair = False
         self.cliente = None
+        self.managerdb = Managerdb()
         self.locadora = self.buscar_locadora()
-        self.managerdb = Manager_db()
         self.managerdb.connectar()
 
     def gerar_banco(self):
-        self.executar_operacoes()
+        self.managerdb.executar_operacoes()
         if self.locadora == None:
             self.locadora = self.buscar_locadora()
 
     def cadastro_locadora(self):
         self.managerdb.criarsessao()
         sessao = self.managerdb.session
-        self.locadora = Locadora(nome="Minha Locadora", telefone="(91)98765432")
-        sessao.add(self.locadora)
-        sessao.commit()
+        try:
+            l = sessao.query(Locadora).one()
+            self.locadora = l
+            print("loc1")
+        except Exception:
+            print("loc2")
+            self.locadora = Locadora(nome="Minha Locadora", telefone="(91)98765432")
+            sessao.add(self.locadora)
+            sessao.commit()
         self.managerdb.fecharsessao()
 
     def buscar_locadora(self):
         self.managerdb.criarsessao()
         s = self.managerdb.session
         try:
-            l = s.query(Locadora).all()
-        except:
+            l = s.query(Locadora).first()
+        except Exception:
             l = None
-        print("Locadora rapaz:" + l) if l else print("Aqui rapaz")
+        print("Locadora rapaz:{0}".format(l)) if l else print("Aqui rapaz")
         s.close()
         return l
 
@@ -45,7 +51,8 @@ class Controller():
             sair = r[1]
             if(len(r[0]) == 3):
                 cliente = Cliente(nome=r[0][0], telefone=r[0][1], endereco=r[0][2])
-                cliente.locadora(locadora=self.locadora)
+                print("{0}".format(cliente))
+                cliente.locadora = self.locadora
                 s.add(cliente)
                 print(self.locadora.clientes)
                 x = input("continuar cadastro? (S/N)")
@@ -67,7 +74,7 @@ class Controller():
             sair = r[1]
             if len(r[0]) == 2:
                 dvd = Dvd(nome=r[0][0], genero=r[0][1])
-                dvd.locadora(locadora=self.locadora)
+                dvd.locadora = self.locadora
                 s.add(dvd)
                 print(self.locadora.dvds)
 
