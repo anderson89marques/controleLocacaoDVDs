@@ -50,7 +50,7 @@ class Locacao(Base):
 class Dvd(Base):
     __tablename__ = 'dvd'
     id = Column(Integer, primary_key=True)
-    codigo = Column(Integer, nullable=False)
+    codigo = Column(Integer, nullable=True)
     nome = Column(String, nullable=False)
     genero = Column(String, nullable=False)
     locadora_id = Column(Integer, ForeignKey('locadora.id'))

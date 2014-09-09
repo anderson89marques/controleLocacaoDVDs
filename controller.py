@@ -1,5 +1,6 @@
 __author__ = 'andersonmarques'
 from banco.classesdb import *
+from datetime import date
 
 class Controller():
     def __init__(self):
@@ -21,9 +22,7 @@ class Controller():
         try:
             l = sessao.query(Locadora).one()
             self.locadora = l
-            print("loc1")
         except Exception:
-            print("loc2")
             self.locadora = Locadora(nome="Minha Locadora", telefone="(91)98765432")
             sessao.add(self.locadora)
             sessao.commit()
@@ -63,7 +62,7 @@ class Controller():
         s.close()
 
     def cadastro_dvds(self):
-        dici = [ "Nome", "Genero"]
+        dici = ["Nome", "Genero"]
         sair = False
         r = []
         self.managerdb.criarsessao()
@@ -100,7 +99,32 @@ class Controller():
         return r
 
     def fazer_locacao(self):
-        pass
+        self.managerdb.criarsessao()
+        s = self.managerdb.session
+        print("\n\n******** %s ********\n" %"Locação")
+        codigo = input("Digite o código do cliente(id):")
+        cliente = self.buscar_cliente_por_id(codigo, s)
+        dvds = self.buscar_dvds_por_id(s)
+        locacao = Locacao(codigo=0, data_locacao=date.today(), data_devolucao=date.fromordinal(date.today().toordinal()+3), cliente=cliente, dvds=dvds, status="locado")
+        s.add(cliente)
+        #s.add(dvds)
+        s.add(locacao)
+        s.commit()
+
+    def buscar_cliente_por_id(self, id, s):
+        cliente = s.query(Cliente).filter(Cliente.id == id).one()
+        return cliente
+
+    def buscar_dvds_por_id(self, s):
+        sair = False
+        dvds = []
+        while not sair:
+            codigo = input("Digite o código do dvd:")
+            dvds.append(s.query(Dvd).filter(Dvd.id == codigo).one())
+            msg = input("continuar?(s/n):").lower()
+            if msg == "n":
+                sair = True
+        return dvds
 
     def switch(self, w):
         self.dic[w]()
