@@ -35,7 +35,7 @@ class Controller():
             l = s.query(Locadora).first()
         except Exception:
             l = None
-        print("Locadora rapaz:{0}".format(l)) if l else print("Aqui rapaz")
+        #print("Locadora rapaz:{0}".format(l)) if l else print("Aqui rapaz")
         s.close()
         return l
 
@@ -105,7 +105,9 @@ class Controller():
         codigo = input("Digite o código do cliente(id):")
         cliente = self.buscar_cliente_por_id(codigo, s)
         dvds = self.buscar_dvds_por_id(s)
-        locacao = Locacao(codigo=0, data_locacao=date.today(), data_devolucao=date.fromordinal(date.today().toordinal()+3), cliente=cliente, dvds=dvds, status="locado")
+        locacao = Locacao(codigo=0, cliente=cliente, dvds=dvds, status="locado", data_locacao=date.today(),
+                          preco=str(self.locadora.preco_locacao_por_dvd*len(dvds)),
+                          data_devolucao=date.fromordinal(date.today().toordinal()+3))
         s.add(cliente)
         #s.add(dvds)
         s.add(locacao)

@@ -18,6 +18,7 @@ class Locadora(Base):
     telefone = Column(String, nullable=False)
     clientes = relationship("Cliente", back_populates='locadora')
     dvds = relationship("Dvd", back_populates='locadora')
+    preco_locacao_por_dvd = 3.0
 
 class Cliente(Base):
     __tablename__ = 'cliente'
@@ -39,6 +40,7 @@ class Locacao(Base):
     codigo = Column(Integer, nullable=False)
     data_locacao = Column(String, nullable=False)
     data_devolucao = Column(String, nullable=False)
+    preco = Column(String, nullable=False) #mudar depois para float
     status = Column(String, nullable=False)
     cliente_id = Column(Integer, ForeignKey('cliente.id'))
     cliente = relationship(Cliente, back_populates='locacoes')
