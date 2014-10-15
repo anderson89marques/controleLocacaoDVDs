@@ -77,7 +77,7 @@ class Ui_MainWindow(object):
         self.actionFilme.setText(_translate("MainWindow", "Filme", None))
         self.actionCliente.setText(_translate("MainWindow", "Cliente", None))
 
-import img_rc
+import img
 
 if __name__ == "__main__":
     import sys
