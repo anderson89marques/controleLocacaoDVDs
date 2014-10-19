@@ -1,6 +1,5 @@
 __author__ = 'anderson'
-import  sys
-from classes import *
+
 
 class Arquivo:
     def open_arquivo(self, nome, modo):
