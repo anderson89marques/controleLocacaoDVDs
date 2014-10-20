@@ -16,6 +16,16 @@ class Controller():
         if self.locadora == None:
             self.locadora = self.buscar_locadora()
 
+    def login(self, log, senha):
+        self.managerdb.criarsessao()
+        s = self.managerdb.session
+        try:
+            l = s.query(Locadora).filter(Locadora.nome == log and Locadora.senha == senha).one()
+            return l
+        except Exception:
+            print("não logou")
+            l = None
+
     def cadastro_locadora(self):
         self.managerdb.criarsessao()
         sessao = self.managerdb.session
@@ -23,7 +33,7 @@ class Controller():
             l = sessao.query(Locadora).one()
             self.locadora = l
         except Exception:
-            self.locadora = Locadora(nome="Minha Locadora", telefone="(91)98765432")
+            self.locadora = Locadora(nome="Minha Locadora", telefone="(91)98765432", senha="lanna")
             sessao.add(self.locadora)
             sessao.commit()
         self.managerdb.fecharsessao()

@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -27,7 +27,7 @@
      <number>30</number>
     </property>
     <item>
-     <widget class="QPushButton" name="pushButton">
+     <widget class="QPushButton" name="novocliente">
       <property name="font">
        <font>
         <weight>75</weight>
@@ -40,7 +40,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="editarcliente">
       <property name="font">
        <font>
         <weight>75</weight>
@@ -53,7 +53,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_3">
+     <widget class="QPushButton" name="removercliente">
       <property name="font">
        <font>
         <weight>75</weight>
@@ -66,7 +66,7 @@
      </widget>
     </item>
     <item>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="salvarcliente">
       <property name="font">
        <font>
         <weight>75</weight>
@@ -80,7 +80,7 @@
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -104,11 +104,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QTextEdit" name="textEdit"/>
+     <widget class="QTextEdit" name="nota"/>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -134,7 +134,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_9"/>
+       <widget class="QLineEdit" name="telefonecliente"/>
       </item>
      </layout>
     </item>
@@ -154,7 +154,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_10"/>
+       <widget class="QLineEdit" name="emailcliente"/>
       </item>
      </layout>
     </item>
@@ -174,13 +174,13 @@
        </widget>
       </item>
       <item>
-       <widget class="QDateEdit" name="dateEdit"/>
+       <widget class="QDateEdit" name="datenascimento"/>
       </item>
      </layout>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -206,7 +206,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox"/>
+       <widget class="QSpinBox" name="spinBoxEstado"/>
       </item>
      </layout>
     </item>
@@ -226,7 +226,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_6"/>
+       <widget class="QLineEdit" name="cepcliente"/>
       </item>
      </layout>
     </item>
@@ -246,7 +246,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_5"/>
+       <widget class="QLineEdit" name="paiscliente"/>
       </item>
      </layout>
     </item>
@@ -266,7 +266,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_7"/>
+       <widget class="QLineEdit" name="cpfcliente"/>
       </item>
      </layout>
     </item>
@@ -286,13 +286,13 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_8"/>
+       <widget class="QLineEdit" name="rgcliente"/>
       </item>
      </layout>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -316,11 +316,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit"/>
+     <widget class="QLineEdit" name="codigocliente"/>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>170</x>
@@ -344,11 +344,11 @@
      </widget>
     </item>
     <item>
-     <widget class="QLineEdit" name="lineEdit_2"/>
+     <widget class="QLineEdit" name="nomecliente"/>
     </item>
    </layout>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -374,7 +374,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_3">
+       <widget class="QLineEdit" name="enderecocliente">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -407,7 +407,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_4">
+       <widget class="QLineEdit" name="cidadecliente">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -420,41 +420,6 @@
     </item>
    </layout>
   </widget>
-  <zorder>label</zorder>
-  <zorder>lineEdit</zorder>
-  <zorder>label_2</zorder>
-  <zorder>lineEdit_2</zorder>
-  <zorder>label_3</zorder>
-  <zorder>lineEdit_3</zorder>
-  <zorder>label_4</zorder>
-  <zorder>lineEdit_4</zorder>
-  <zorder>label_5</zorder>
-  <zorder>spinBox</zorder>
-  <zorder>label_6</zorder>
-  <zorder>label_7</zorder>
-  <zorder>label_8</zorder>
-  <zorder>lineEdit_5</zorder>
-  <zorder>lineEdit_6</zorder>
-  <zorder>lineEdit_7</zorder>
-  <zorder>label_9</zorder>
-  <zorder>lineEdit_8</zorder>
-  <zorder>label_10</zorder>
-  <zorder>label_11</zorder>
-  <zorder>label_12</zorder>
-  <zorder>lineEdit_9</zorder>
-  <zorder>lineEdit_10</zorder>
-  <zorder>dateEdit</zorder>
-  <zorder>textEdit</zorder>
-  <zorder>label_13</zorder>
-  <zorder>pushButton</zorder>
-  <zorder>pushButton_2</zorder>
-  <zorder>pushButton_3</zorder>
-  <zorder>pushButton_4</zorder>
-  <zorder>lineEdit_3</zorder>
-  <zorder>lineEdit_4</zorder>
-  <zorder>label_4</zorder>
-  <zorder>lineEdit_3</zorder>
-  <zorder>label_3</zorder>
  </widget>
  <resources/>
  <connections/>
