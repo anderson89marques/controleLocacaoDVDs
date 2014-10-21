@@ -71,7 +71,7 @@ class Managerdb():
         self.session = None
 
     def connectar(self):
-        self.engine = create_engine('postgresql+psycopg2://postgres@localhost/locadoradvds')
+        self.engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost/pythonestudo')
 
     def criarsessao(self):
         DBSession = sessionmaker()
