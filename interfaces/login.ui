@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Form</class>
- <widget class="QWidget" name="Form">
+ <class>Login</class>
+ <widget class="QWidget" name="Login">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QPushButton" name="pushButton">
+  <widget class="QPushButton" name="btenviarlogin">
    <property name="geometry">
     <rect>
      <x>250</x>
@@ -26,7 +26,7 @@
     <string>Enviar</string>
    </property>
   </widget>
-  <widget class="QWidget" name="">
+  <widget class="QWidget" name="layoutWidget">
    <property name="geometry">
     <rect>
      <x>30</x>
@@ -71,7 +71,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit"/>
+           <widget class="QLineEdit" name="logintx"/>
           </item>
          </layout>
         </item>
@@ -88,7 +88,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_2">
+           <widget class="QLineEdit" name="senhatx">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -105,15 +105,8 @@
     </item>
    </layout>
   </widget>
-  <zorder>label</zorder>
-  <zorder>label_2</zorder>
-  <zorder>label_3</zorder>
-  <zorder>lineEdit</zorder>
-  <zorder>lineEdit_2</zorder>
-  <zorder>pushButton</zorder>
-  <zorder>horizontalLayoutWidget</zorder>
-  <zorder>pushButton</zorder>
-  <zorder>pushButton</zorder>
+  <zorder>layoutWidget</zorder>
+  <zorder>btenviarlogin</zorder>
  </widget>
  <resources/>
  <connections/>

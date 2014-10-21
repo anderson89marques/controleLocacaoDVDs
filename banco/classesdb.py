@@ -16,6 +16,7 @@ class Locadora(Base):
     id = Column(Integer, primary_key=True)
     nome = Column(String, nullable=False)
     telefone = Column(String, nullable=False)
+    senha = Column(String, nullable=False)
     clientes = relationship("Cliente", back_populates='locadora')
     dvds = relationship("Dvd", back_populates='locadora')
     preco_locacao_por_dvd = 3.0
@@ -55,6 +56,7 @@ class Dvd(Base):
     codigo = Column(Integer, nullable=True)
     nome = Column(String, nullable=False)
     genero = Column(String, nullable=False)
+    quantidade = Column(Integer, nullable=False)
     locadora_id = Column(Integer, ForeignKey('locadora.id'))
     locadora = relationship(Locadora, back_populates='dvds')
     locacao_id = Column(Integer, ForeignKey('locacao.id'))
@@ -69,7 +71,7 @@ class Managerdb():
         self.session = None
 
     def connectar(self):
-        self.engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost/pythonestudo')
+        self.engine = create_engine('postgresql+psycopg2://postgres@localhost/locadoradvds')
 
     def criarsessao(self):
         DBSession = sessionmaker()
