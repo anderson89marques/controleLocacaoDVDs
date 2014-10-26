@@ -21,10 +21,10 @@ class Controller():
         s = self.managerdb.session
         try:
             l = s.query(Locadora).filter(Locadora.nome == log and Locadora.senha == senha).one()
-            return l
         except Exception:
             print("não logou")
             l = None
+        return l
 
     def cadastro_locadora(self):
         self.managerdb.criarsessao()

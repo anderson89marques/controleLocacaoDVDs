@@ -6,7 +6,7 @@ from controller import Controller
 
 class TelaPrincipal(QtGui.QMainWindow, telaPrincipal.Ui_MainWindow):
     def __init__(self):
-        super(TelaPrincipal,self).__init__()
+        super(TelaPrincipal, self).__init__()
         self.setupUi(self)
 
         self.w = None
@@ -20,12 +20,14 @@ class TelaPrincipal(QtGui.QMainWindow, telaPrincipal.Ui_MainWindow):
         self.actionCliente.triggered.connect(self.cadastroCliente)
         self.actionFilme.triggered.connect(self.cadastroFilme)
 
+        self.menuCadastro.setEnabled(False)
+
         self.move(100, 200)
         self.resize(1000, 1000)
 
     def fazerLogin(self):
         print("login")
-        self.w = Login()
+        self.w = Login(self)
         self.w.control = self.control
         self.w.show()
 
@@ -43,11 +45,15 @@ class TelaPrincipal(QtGui.QMainWindow, telaPrincipal.Ui_MainWindow):
 
 
 class Login(QtGui.QWidget, login.Ui_Login):
-    def __init__(self):
+    #Definindo um sinal que será conectado ao metodo close
+    closeApp = QtCore.pyqtSignal()
+
+    def __init__(self, mainwin):
         super(Login, self).__init__()
         self.setupUi(self)
         self.move(200, 200)
         self.control = None
+        self.mainwindow = mainwin
 
         self.closeApp.connect(self.close)
         self.btenviarlogin.clicked.connect(self.logar)
@@ -58,7 +64,9 @@ class Login(QtGui.QWidget, login.Ui_Login):
         l = self.control.login(txl, txs)
         if l:
             #QtGui.QMessageBox("login ok", "Login realizado com sucesso", QtGui.QMessageBox.)
-            pass
+            self.mainwindow.menuCadastro.setEnabled(True)
+            self.mainwindow.menuLogin.setEnabled(False)
+            self.closeApp.emit()
         print(txl)
 
 class CadastroFilme(QtGui.QWidget, cadastroFilme.Ui_Form):
