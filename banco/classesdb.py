@@ -63,7 +63,7 @@ class Dvd(Base):
     locacao = relationship(Locacao, back_populates='dvds')
 
     def __repr__(self):
-        return "[DVD: nome:{0} genero:{1}]".format(self.nome, self.genero)
+        return "[DVD: nome:{0} genero:{1} quantidade:{2}]".format(self.nome, self.genero, self.quantidade)
 
 class Managerdb():
     def __init__(self):
@@ -71,7 +71,7 @@ class Managerdb():
         self.session = None
 
     def connectar(self):
-        self.engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost/pythonestudo')
+        self.engine = create_engine('postgresql+psycopg2://postgres@localhost/locadoradvds')
 
     def criarsessao(self):
         DBSession = sessionmaker()

@@ -49,6 +49,28 @@ class Controller():
         s.close()
         return l
 
+    def cadastrar_filme(self, filme):
+        self.managerdb.criarsessao()
+        s = self.managerdb.session
+        try:
+            filme.locadora = self.locadora
+            s.add(filme)
+            s.commit()
+        except Exception:
+            print("Erro ao salvar filme")
+        s.close()
+
+
+    def gerar_codigo_filme(self, s=None):
+        if s:
+            return s.query(Dvd).count() + 1
+        else:
+            self.managerdb.criarsessao()
+            s = self.managerdb.session
+            r = s.query(Dvd).count() + 1
+            s.close()
+            return r
+
     def cadastro_cliente(self):
         dici = [ "Nome", "Telefone", "Endereco"]
         sair = False

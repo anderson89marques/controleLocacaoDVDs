@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'login.ui'
 #
-# Created: Sun Oct 19 18:20:38 2014
+# Created: Tue Oct 28 23:31:07 2014
 #      by: PyQt4 UI code generator 4.11.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -72,6 +72,8 @@ class Ui_Login(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.senhatx.sizePolicy().hasHeightForWidth())
         self.senhatx.setSizePolicy(sizePolicy)
+        self.senhatx.setContextMenuPolicy(QtCore.Qt.DefaultContextMenu)
+        self.senhatx.setEchoMode(QtGui.QLineEdit.Password)
         self.senhatx.setObjectName(_fromUtf8("senhatx"))
         self.horizontalLayout_2.addWidget(self.senhatx)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
